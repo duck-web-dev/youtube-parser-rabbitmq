@@ -18,7 +18,7 @@ import logging
 
 
 class YTParserWorker(Process):
-	def __init__(self, channel_factory: Callable[[], BlockingChannel], worker_id: int):
+	def __init__(self, channel_factory: Callable[[], BlockingChannel], worker_id: int, chrome_bin_path, chromedriver_bin_path):
 		'''
 		Initialize a Worker instance.
 
@@ -52,8 +52,10 @@ class YTParserWorker(Process):
 			self.channel.basic_nack(ack_id)
 
 	def parse_channel(self, channel_url: str):
-		time.sleep(5)
-		return json.dumps((channel_url.split('@')[-1][:11], channel_url, 1))
+		# Parsing logic here later, it actually returns list of three strings.
+		# return json.dumps((channel_url, channel_url, channel_url))
+		time.sleep(3)
+		return json.dumps((channel_url.split('@')[-1][:11], channel_url, channel_url))
 
 	def stop_consuming(self):
 		self.channel.stop_consuming()
