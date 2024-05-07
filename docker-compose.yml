@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+      RABBITMQ_DEFAULT_VHOST: '/'
+      RABBITMQ_PLUGINS: "rabbitmq_management"
+      #RABBITMQ_ERL_COOKIE: 'securestring'
+      # RABBITMQ_CONFIG_FILE: /etc/rabbitmq/rabbitmq.config
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    restart: always
+
+  app:
+    build: .
+    container_name: yt-parse-container
+    depends_on:
+      - rabbitmq
+    links:
+      - rabbitmq
+    volumes:
+      - .:/app
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    extra_hosts:
+      - "db.host:${DB_HOST}"
+    environment:
+      # DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db.host:${DB_PORT}/${DB_NAME}
+      DATABASE_URL: "user=${DB_USER} password=${DB_PASSWORD} port=${DB_PORT} dbname=${DB_NAME} host=db.host"
+      RMQ_USERNAME: ${RABBITMQ_USER}
+      RMQ_PASSWORD: ${RABBITMQ_PASS}
