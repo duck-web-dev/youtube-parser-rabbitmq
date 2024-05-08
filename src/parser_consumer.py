@@ -53,10 +53,12 @@ if __name__ == '__main__':
 	
 	config_logging()
 
-	num_workers: int = env.get('PARSER_WORKERS', None)
-	if num_workers is None:
+	num_workers = env.get('PARSER_WORKERS', None)
+	if (num_workers is None) or (not num_workers.isdigit()):
 		logging.warning('Number of workers not set, using default. Use `PARSER_WORKERS` env variable to change this.')
 		num_workers = 3
+	else:
+		num_workers = int(num_workers)
 
 	consumer = VideosConsumer(get_rmq, num_workers, '../bin')
 	consumer.start_workers()

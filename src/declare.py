@@ -33,5 +33,6 @@ def setup_rmq():
 
 if __name__ == '__main__':
 	config_logging()
-	logging.info('Setting up RabbitMQ')
+	logging.info('Setting up RabbitMQ...')
 	setup_rmq()
+	logging.info('RabbitMQ setup done, exiting.')

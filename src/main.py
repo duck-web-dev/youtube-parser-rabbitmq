@@ -5,7 +5,7 @@ from declare import get_rmq
 
 # Check argv
 if len(sys.argv) != 2:
-	print("Usage: python script.py <urls_list.txt>")
+	print("Usage: python main.py <urls_list.txt>")
 	sys.exit(1)
 
 # Read from file
@@ -26,5 +26,8 @@ for url in urls:
 	print(f'Publishing url "{url}" ...')
 	channel.basic_publish(exchange='', routing_key='channel_urls', body=url.strip())
 	print('Ok')
+
+channel.close()
+rmq.close()
 
 print('All urls published')
