@@ -33,6 +33,8 @@ This project is a simple YouTube channel parser that extracts all videos availab
 
 ### Tips:
 
+To check logs or kill consumers, use `tmux a` to attach to their session. Both database and parser scripts are ran in tmux sessions.
+
 If you need to connect to PostgreSQL on the host machine:
 1. Set `listen_addresses` in postgres config. 
 2. Either:
