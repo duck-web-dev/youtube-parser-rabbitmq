@@ -37,4 +37,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt  # Since Python3.11  --break
 RUN bash ./scripts/get_recent_chrome.sh $(realpath ./bin)
 
 
-CMD ./run.sh;
+CMD bash ./run.sh;
