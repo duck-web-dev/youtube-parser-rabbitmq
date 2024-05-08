@@ -6,7 +6,7 @@ This project is a simple YouTube channel parser that extracts all videos availab
 
 1. Clone/download the repo
 2. Create a `.env` file based on `.env.example` with actual values for environment variables. Pls make sure not to publish the actual ".env" to github, its added to gitignore.
-4. Build and start docker container.
+4. Build and start docker container. (!IMPORTANT!: If it fails to start, just run the command again, sometimes docker doesn't setup the network right the first time)
     ```bash
     docker compose up -d --build
     ```
