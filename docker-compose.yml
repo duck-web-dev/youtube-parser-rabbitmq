@@ -22,8 +22,8 @@ services:
       - rabbitmq
     links:
       - rabbitmq
-    volumes:
-      - .:/app
+    # volumes:  # For dev env only
+    #   - .:/app
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     extra_hosts:

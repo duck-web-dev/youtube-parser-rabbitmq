@@ -10,7 +10,7 @@ RUN apt-get install -y \
 	python3-pip python3-dev \
 	libpq-dev  \
     postgresql-client \
-	software-properties-common curl wget jq unzip iputils-ping screen
+	software-properties-common curl wget jq unzip iputils-ping tmux
 
 # Libs for chrome and chromedriver
 RUN add-apt-repository -y universe && apt update;
